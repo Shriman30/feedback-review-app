@@ -1,0 +1,4 @@
+This is a basic react application. The following concepts were used to create the application:
+- UseState
+- UseEffect
+- UseContext
