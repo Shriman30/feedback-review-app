@@ -4,20 +4,29 @@ import { useContext } from "react";
 import FeedbackContext from "../context/FeedbackContext";
 
 const FeedbackList = () => {
+  const { feedback, isLoading } = useContext(FeedbackContext);
 
-  const {feedback} = useContext(FeedbackContext)
-
-  if (!feedback || feedback.length === 0) {
+  if (!isLoading && (!feedback || feedback.length === 0)) {
     return <p>No Feedback Yet!</p>;
   }
-  return (
+
+  return isLoading ? (
+    <h3>Loading...</h3>
+  ) : (
     <div className="feedback-list">
       {feedback.map((item) => {
-        return <FeedbackItem key={item.id} item={item}/>;
+        return <FeedbackItem key={item.id} item={item} />;
       })}
     </div>
   );
-};
 
+  // return (
+  //   <div className="feedback-list">
+  //     {feedback.map((item) => {
+  //       return <FeedbackItem key={item.id} item={item}/>;
+  //     })}
+  //   </div>
+  // );
+};
 
 export default FeedbackList;
